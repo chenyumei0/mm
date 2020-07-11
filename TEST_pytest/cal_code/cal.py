@@ -4,17 +4,30 @@
 class Calulator:
     #实现加法
     def add(self,a,b):
-        return a+b
+        #return a+b
+        try:
+            sum = a + b
+            return sum
+        except Exception as erro:
+            print(f"这里有一个错误{erro}")
     #实现减法
     def subt(self,a,b):
-        return a-b
+        try:
+            diff = a - b
+            return diff
+        except Exception as erro:
+            print(f"这里有一个错误{erro}")
     #实现乘法
     def multi(self,a,b):
-        return a*b
+        try:
+            pro = a * b
+            return pro
+        except Exception as erro:
+            print(f"这里有一个错误{erro}")
     #实现出发
     def div(self,a,b):
         try:
             quo=a/b
-            print(quo)
-        except:
-            print("除数不能为零")
+            return quo
+        except Exception as erro:
+            print(f"这里有一个错误{erro}")
