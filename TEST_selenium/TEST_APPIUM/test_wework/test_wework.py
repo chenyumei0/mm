@@ -40,34 +40,46 @@ class Testwework:
                                                                 'text("打卡").instance(0));').click()
     #driver.find_element_by_xpath("//*[@resource-id='com.tencent.wework:id/gw8' and @text='外出打卡']").click()
         self.driver.find_element_by_id("com.tencent.wework:id/ao_").click()
+        self.driver.back()
 
     @pytest.mark.parametrize('name,phonenumber', mydatas_add, ids=myids_add)
     def test_addmember(self,name,phonenumber):
         print(f'测试企业微信添加成员，添加{name}')
-
+        #进入通讯录页面
         self.driver.find_element_by_xpath('//*[@text="通讯录"]').click()
+        #点击添加成员
         self.driver.find_element_by_android_uiautomator('new UiScrollable(new UiSelector().'
                                                                 'scrollable(true).instance(0)).'
                                                                 'scrollIntoView(new UiSelector().'
                                                                 'text("添加成员").instance(0));').click()
+        #选择手动添加用户
         self.driver.find_element_by_xpath('//*[@text="手动输入添加"]').click()
+        #填入用户信息
         self.driver.find_element_by_xpath('//*[@text="必填"]').send_keys(name)
         self.driver.find_element_by_xpath('//*[@text="手机号"]').send_keys(phonenumber)
         self.driver.find_element_by_xpath('//*[@text="设置部门"]').click()
+        #点击确定
         self.driver.find_element_by_xpath('//*[@text="确定(1)"]').click()
+        #点击保存
         self.driver.find_element_by_xpath('//*[@text="保存"]').click()
         self.driver.back()
 
     @pytest.mark.parametrize('name',mydatas_del,ids=myids_del)
     def test_del_member(self,name):
         print(f'测试企业微信删除成员,删除{name}')
+        #进入通讯录界面
         self.driver.find_element_by_xpath('//*[@text="通讯录"]').click()
+        #找到要删除的成员
         self.driver.find_element_by_android_uiautomator(f'new UiScrollable(new UiSelector().'
                                                         f'scrollable(true).instance(0)).'
                                                         f'scrollIntoView(new UiSelector().'
                                                         f'text("{name}").instance(0));').click()
+        #点击右上角设置按钮
         self.driver.find_element_by_id('com.tencent.wework:id/h9p').click()
+        #点击编辑成员
         self.driver.find_element_by_xpath('//*[@text="编辑成员"]').click()
+        #点击删除成员
         self.driver.find_element_by_id('com.tencent.wework:id/e3f').click()
+        #点击确定
         self.driver.find_element_by_id('com.tencent.wework:id/bci').click()
 
